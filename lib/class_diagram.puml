@@ -1,0 +1,47 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter_application_1::main.dart::RecipeApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flutter_application_1::main.dart::RecipeApp"
+
+class "flutter_application_1::screens::favorite_recipes_screen.dart::FavoriteRecipesScreen" { 
+  +List<Map<dynamic, dynamic>> favoriteRecipes
+  +dynamic Function(int) removeFavorite
+  +Widget build()
+}
+
+"flutter_application_1::screens::favorite_recipes_screen.dart::FavoriteRecipesScreen" o-- "null::dynamic Function(int)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flutter_application_1::screens::favorite_recipes_screen.dart::FavoriteRecipesScreen"
+
+class "flutter_application_1::screens::recipe_detail_screen.dart::RecipeDetailScreen" {       
+  +Map<dynamic, dynamic> recipe
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flutter_application_1::screens::recipe_detail_screen.dart::RecipeDetailScreen"
+
+class "flutter_application_1::screens::recipe_list_screen.dart::RecipeListScreen" {
+  +_RecipeListScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "flutter_application_1::screens::recipe_list_screen.dart::RecipeListScreen"
+
+class "flutter_application_1::screens::recipe_list_screen.dart::_RecipeListScreenState" {     
+  +List<dynamic> recipes
+  +List<Map<dynamic, dynamic>> favoriteRecipes
+  +void initState()
+  +dynamic fetchRecipes()
+  +dynamic loadFavorites()
+  +dynamic saveFavorites()
+  +void toggleFavorite()
+  +void removeFavorite()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "flutter_application_1::screens::recipe_list_screen.dart::_RecipeListScreenState"
+
+
+@enduml
